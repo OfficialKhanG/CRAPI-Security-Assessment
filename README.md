@@ -34,16 +34,16 @@ chmod +x exploits/*.sh
 ./exploits/negative_price.sh
 ./exploits/vehicle_tracking.sh
 
-# 📸 Proof of Concept Screenshots
+## 📸 Proof of Concept Screenshots
 
 ### 1. Order Return BOLA
-![BOLA](screenshots/BOLA%20screenhsot.png)
+![Order Return BOLA](https://raw.githubusercontent.com/OfficialKhanG/CRAPI-Security-Assessment/main/screenshots/BOLA%20screenhsot.png)
 
 ### 2. Admin Mass Assignment
-![Admin](screenshots/Admin%20Mass%20asignment.png)
+![Admin Mass Assignment](https://raw.githubusercontent.com/OfficialKhanG/CRAPI-Security-Assessment/main/screenshots/Admin%20Mass%20asignment.png)
 
 ### 3. Negative Price Exploit
-![Negative Price](screenshots/Negative%20Price%20Exploit%20Screenshot.png)
+![Negative Price Exploit](https://raw.githubusercontent.com/OfficialKhanG/CRAPI-Security-Assessment/main/screenshots/Negative%20Price%20Exploit%20Screenshot.png)
 
 ### 4. Vehicle Location Tracking
-![Vehicle Location](screenshots/Vehicle%20location%20screenshot.png)
+![Vehicle Location Tracking](https://raw.githubusercontent.com/OfficialKhanG/CRAPI-Security-Assessment/main/screenshots/Vehicle%20location%20screenshot.png)
