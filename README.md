@@ -22,7 +22,7 @@ This repository contains a **comprehensive security assessment** of CRAPI (Compr
 
 ```bash
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/CRAPI-Security-Assessment.git
+git clone https://github.com/OfficialKhanG/CRAPI-Security-Assessment.git
 cd CRAPI-Security-Assessment
 
 # Make scripts executable
