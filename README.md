@@ -14,9 +14,9 @@ This repository contains a **comprehensive security assessment** of CRAPI (Compr
 | # | Vulnerability | Severity |
 |---|---------------|----------|
 | 1 | Order Return BOLA | 🔴 High |
-| 2 | Vehicle Location Tracking | 🔴 Critical |
-| 3 | Mass Assignment - Admin Creation | 🔴 Critical |
-| 4 | Negative Price Exploit | 🔴 Critical |
+| 2 | Vehicle Location Tracking | 🔴 High |
+| 3 | Mass Assignment - Admin Creation | 🔴 High |
+| 4 | Negative Price Exploit | 🔴 High |
 
 ## 🚀 Quick Start
 
