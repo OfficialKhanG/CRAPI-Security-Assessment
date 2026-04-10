@@ -40,9 +40,9 @@ curl -X POST "http://localhost:8888/workshop/api/shop/orders/return_order?order_
   -b cookies.txt
 
 Impact
-✅ Unauthorized order returns
 
-✅ Financial loss to victims
+An authenticated attacker can manipulate the order_id parameter to return orders belonging to other users without authorization. This exposes victim order details including purchase history, product information, and transaction records. BOLA represents the OWASP API Security Top 10 #1 risk precisely because server-side object-level authorization checks are frequently absent or incomplete, making this vulnerability endemic across real-world APIs.
+In a production environment, this vulnerability allows an attacker to impersonate legitimate users, manipulate financial transactions, and potentially redirect refunds to unauthorized accounts — causing direct monetary loss to both users and the organization. The business risk includes regulatory liability under India's DPDP Act 2023 and reputational damage if exploited at scale. This class of vulnerability is routinely missed in standard security assessments because most testing occurs at the UI level rather than the API layer, leaving authorization logic completely unvalidated.
 
 🔴 Vulnerability #2: Vehicle Location Tracking
 
@@ -65,9 +65,8 @@ curl -X GET "http://localhost:8888/identity/api/v2/vehicle/$VEHICLE_ID/location"
   -b cookies.txt
 
 Impact
-✅ Real-time location tracking
 
-✅ Privacy violation
+An authenticated attacker can exploit missing object-level authorization by enumerating vehicle identifiers from publicly accessible community data and directly querying backend APIs to retrieve real-time location information of other users’ vehicles. This exposes precise live location data of vehicle owners whose identifiers were harvested, putting their physical safety and privacy at risk. In a production environment, such a flaw can enable stalking, theft, or other illegal activities, leading to severe business consequences including regulatory penalties under frameworks like the Digital Personal Data Protection Act, 2023 in India, as well as significant reputational damage. This vulnerability is often missed during testing because assessments are typically limited to front-end workflows and do not rigorously validate server-side authorization controls at the API level.
 
 🔴 Vulnerability #3: Mass Assignment - Admin Creation
 
@@ -91,9 +90,8 @@ curl -X POST http://localhost:8888/identity/api/auth/signup \
   }'
 
 Impact
-✅ Full system takeover
 
-✅ Unauthorized admin access
+An authenticated attacker can exploit a mass assignment flaw by injecting privileged fields such as `role=admin` in the signup request to escalate their privileges during account creation. This grants the attacker unauthorized administrative access, allowing full control over system functionality, user management, and sensitive operations. In a production environment, this can lead to complete system compromise, data breaches, service disruption, and serious legal consequences including regulatory penalties and loss of customer trust. This vulnerability is often missed because developers rely on client-side restrictions or assume implicit field validation, while failing to enforce strict server-side allowlisting of assignable attributes.
 
 🔴 Vulnerability #4: Negative Price Exploit
 
@@ -117,9 +115,8 @@ curl -X POST http://localhost:8888/workshop/api/shop/products \
   }'
 
 Impact
-✅ Infinite money generation
 
-✅ Economic system collapse
+An authenticated attacker can exploit insufficient server-side validation by submitting a negative value in the `price` field when creating a product, effectively manipulating the application’s business logic. This allows the attacker to generate financial gain by abusing transactions involving negative-priced items, potentially leading to unauthorized credits or balance manipulation. In a production environment, this can result in severe financial losses, abuse of the platform’s economic model, and legal consequences including regulatory liability under the Digital Personal Data Protection Act, 2023 in India, along with reputational damage. This vulnerability is often missed because testing typically focuses on valid input ranges and UI constraints, while failing to enforce strict validation and business rules at the backend level.
 
 🛡️ Remediation Recommendations
 
