@@ -91,7 +91,7 @@ curl -X POST http://localhost:8888/identity/api/auth/signup \
 
 Impact
 
-An authenticated attacker can exploit a mass assignment flaw by injecting privileged fields such as `role=admin` in the signup request to escalate their privileges during account creation. This grants the attacker unauthorized administrative access, allowing full control over system functionality, user management, and sensitive operations. In a production environment, this can lead to complete system compromise, data breaches, service disruption, and serious legal consequences including regulatory penalties and loss of customer trust. This vulnerability is often missed because developers rely on client-side restrictions or assume implicit field validation, while failing to enforce strict server-side allowlisting of assignable attributes.
+An authenticated attacker can exploit a mass assignment flaw by injecting privileged fields such as `role=admin` in the signup request to escalate their privileges during account creation. This grants the attacker unauthorized administrative access, allowing full control over system functionality, user management, and sensitive operations. In a production environment, this can lead to complete system compromise, data breaches, service disruption, and serious legal consequences including regulatory liability under the Digital Personal Data Protection Act, 2023 in India, along with loss of customer trust. This vulnerability is often missed because developers rely on client-side restrictions or assume implicit field validation, while failing to enforce strict server-side allowlisting of assignable attributes.
 
 🔴 Vulnerability #4: Negative Price Exploit
 
@@ -130,13 +130,37 @@ def return_order(order_id, current_user):
     if not order:
         return {"error": "Unauthorized"}, 403
 
-2. Fix Mass Assignment
+2. Fix BOLA (Vehicle Access Control)
+
+def get_vehicle_location(vehicle_id, current_user):
+    vehicle = Vehicle.query.filter_by(
+        id=vehicle_id,
+        owner_id=current_user.id
+    ).first()
+    if not vehicle:
+        return {"error": "Unauthorized"}, 403
+
+Do Not Expose Vehicle IDs
+
+post_data = {
+    "author": {
+        "name": user.name
+        # remove vehicle_id from response
+    }
+}
+
+Add Server-Side Authorization Check
+
+if vehicle.owner_id != current_user.id:
+    return {"error": "Forbidden"}, 403
+
+3. Fix Mass Assignment
 
 class UserRegistrationDTO:
     allowed_fields = ['name', 'email', 'password', 'number']
     role = 'user'  # Always default
 
-3. Fix Negative Price
+4. Fix Negative Price
 
 def create_product(data):
     if float(data.get('price', 0)) <= 0:
