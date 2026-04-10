@@ -13,12 +13,14 @@ This report documents **4 critical vulnerabilities** discovered in CRAPI.
 
 | Severity | Count |
 |----------|-------|
-| 🔴 Critical | 3 |
-| 🟠 High | 1 |
+| 🟠 High | 4 |
 
 ---
 
 ## 🔴 Vulnerability #1: Order Return BOLA
+
+CVSS Score: 7.6 (High)
+Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:L
 
 ### Affected Endpoint
 POST /workshop/api/shop/orders/return_order?order_id={id}
@@ -43,6 +45,10 @@ Impact
 ✅ Financial loss to victims
 
 🔴 Vulnerability #2: Vehicle Location Tracking
+
+CVSS Score: 7.1 (High)
+Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:N
+
 Affected Endpoints
 
 GET /community/api/v2/community/posts/recent
@@ -64,6 +70,10 @@ Impact
 ✅ Privacy violation
 
 🔴 Vulnerability #3: Mass Assignment - Admin Creation
+
+CVSS Score: 8.8 (High)
+Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+
 Affected Endpoint
 
 POST /identity/api/auth/signup
@@ -86,6 +96,10 @@ Impact
 ✅ Unauthorized admin access
 
 🔴 Vulnerability #4: Negative Price Exploit
+
+CVSS Score: 7.1 (High)
+Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:N
+
 Affected Endpoint
 
 POST /workshop/api/shop/products
